@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="parking">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="parking_id" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="parking_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="parking_longitude" Type="Double" />
+    <Property Name="parking_latitude" Type="Double" />
+    <Property Name="parking_available_slots" Type="Int32" />
+    <Property Name="town_id" Type="Int32" />
+    <Property Name="user_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="slots" Type="Int32" />
+    <Property Name="price_per_day" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="town" Relationship="Self.FK_parkings_town" FromRole="parkings" ToRole="town" />
+  </EntityType>
+  <EntityType Name="town">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="town_id" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="town_longitude" Type="Double" />
+    <Property Name="town_latitude" Type="Double" />
+    <Property Name="town_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="parkings" Relationship="Self.FK_parkings_town" FromRole="town" ToRole="parkings" />
+  </EntityType>
+  <Association Name="FK_parkings_town">
+    <End Role="town" Type="Self.town" Multiplicity="0..1" />
+    <End Role="parkings" Type="Self.parking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="town">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="parkings">
+        <PropertyRef Name="town_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PMSEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="parkings" EntityType="Self.parking" />
+    <EntitySet Name="towns" EntityType="Self.town" />
+    <AssociationSet Name="FK_parkings_town" Association="Self.FK_parkings_town">
+      <End Role="town" EntitySet="towns" />
+      <End Role="parkings" EntitySet="parkings" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

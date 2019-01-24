@@ -1,0 +1,127 @@
+﻿@model PMSCarparking.Models.parking
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Login</title>
+    <!-- plugins:css -->
+    <link href="~/Content/boostrap/materialdesignicons.min.css" rel="stylesheet" />
+    <link href="~/Content/boostrap/vendor.bundle.base.css" rel="stylesheet" />
+    <link href="~/Content/boostrap/vendor.bundle.addons.css" rel="stylesheet" />
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link href="~/Content/boostrap/style.css" rel="stylesheet" />
+    <!-- endinject -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="~/Content/boostrap/favicon.png" />
+</head>
+
+<body>
+    @Html.BeginForm("Login", "Login", FormMethod.Post){
+    @Html.AntiForgeryToken()
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper auth-page">
+            <div class="content-wrapper d-flex align-items-center auth theme-one" style="background-image: url('../../Content/image/login.jpg');  background-size: cover;">
+
+                <div class="row w-100">
+                    <div class="col-lg-4 mx-auto">
+                        <div class="auto-form-wrapper">
+
+                            <form action="#">
+                                <div class="form-group">
+                                    <label class="label">Username</label>
+                                    <div class="input-group">
+                                        @*@Html.LabelFor(a => a.user_name, new { @class = "input - group" })*@
+                                        @*<input type="text" class="form-control" placeholder="Username">*@
+                                        @Html.TextBoxFor(a => a.user_name, new { @class = "form-control" })
+                                        @*@Html.ValidationMessageFor(a => a.user_name, "", new { @class = "form-control" })*@
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="fa fa-check-circle-o"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="label">Password</label>
+                                    <div class="input-group">
+                                        @*@Html.LabelFor(a => a.password, new { @class = "input-group" })*@
+                                        @*<input type="password" class="form-control" placeholder="*********">*@
+                                        @Html.PasswordFor(a => a.password, new { @class = "form-control" })
+                                        @*@Html.ValidationMessageFor(a => a.user_name, "", new { @class = "form-control" })*@
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">
+                                                <i class="fa fa-check-circle-o"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-primary submit-btn btn-block">Login</button>
+                                </div>
+                                <div class="form-group d-flex justify-content-between">
+                                    <div class="form-check form-check-flat mt-0">
+                                        <label class="container">
+                                            <input type="checkbox" class="" checked>
+                                            <span class="checkmark"></span>
+                                            Keep me signed in
+                                        </label>
+                                    </div>
+                                    @*<a href="#" class="text-small forgot-password text-black">Forgot Password</a>*@
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-block g-login">
+                                        <img class="mr-3" src="../../images/file-icons/icon-google.svg" alt="">Log in with Google
+                                    </button>
+                                </div>
+                                <div class="text-block text-center my-3">
+                                    <span class="text-small font-weight-semibold">Not a member ?</span>
+                                    <a href="register.html" class="text-black text-small">Register</a>
+                                </div>
+                            </form>
+
+                        </div>
+                        @*<ul class="auth-footer">
+                                <li>
+                                    <a href="#">Conditions</a>
+                                </li>
+                                <li>
+                                    <a href="#">Help</a>
+                                </li>
+                                <li>
+                                    <a href="#">Terms</a>
+                                </li>
+                            </ul>
+                            <p class="footer-text text-center">copyright © 2018 Bootstrapdash. All rights reserved.</p>*@
+                    </div>
+                </div>
+                
+            </div>
+            <!-- content-wrapper ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
+    </div>
+    }
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="~/Scripts/js/vendor.bundle.base.js"></script>
+    <script src="~/Scripts/js/vendor.bundle.addons.js"></script>
+    <!-- endinject -->
+    <!-- inject:js -->
+    <script src="~/Scripts/js/off-canvas.js"></script>
+    <script src="~/Scripts/js/misc.js"></script>
+    <!-- endinject -->
+</body>
+
+</html>

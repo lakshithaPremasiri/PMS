@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="parkings">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="parking_id" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="parking_name" Type="varchar" MaxLength="50" />
+    <Property Name="parking_longitude" Type="float" />
+    <Property Name="parking_latitude" Type="float" />
+    <Property Name="parking_available_slots" Type="int" />
+    <Property Name="town_id" Type="int" />
+    <Property Name="user_name" Type="varchar" MaxLength="20" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+    <Property Name="slots" Type="int" />
+    <Property Name="price_per_day" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="town">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="town_id" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="town_longitude" Type="float" />
+    <Property Name="town_latitude" Type="float" />
+    <Property Name="town_name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_parkings_town">
+    <End Role="town" Type="Self.town" Multiplicity="0..1" />
+    <End Role="parkings" Type="Self.parkings" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="town">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="parkings">
+        <PropertyRef Name="town_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PMSModelStoreContainer">
+    <EntitySet Name="parkings" EntityType="Self.parkings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="town" EntityType="Self.town" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_parkings_town" Association="Self.FK_parkings_town">
+      <End Role="town" EntitySet="town" />
+      <End Role="parkings" EntitySet="parkings" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

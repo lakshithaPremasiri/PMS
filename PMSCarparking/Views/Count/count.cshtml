@@ -1,0 +1,37 @@
+﻿@model PMSCarparking.Models.parking
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<p style="padding-top:10%">
+ 
+</p>
+<table class="table" style="text-align:center; border:solid; background-color:chartreuse; width:auto;height:50%;" align="center" >
+    <tr style="border:solid">
+
+        <th style="font-size:30px; border:solid">
+            Available Slots
+        </th>
+        <th style="font-size:30px; border:solid">
+            Slots
+        </th>
+        <th style="font-size:30px; border:solid">
+            Price Per Day
+        </th>
+
+
+    </tr>
+    <tr>
+        <td style="font-size:30px; border:solid">
+            @Model.parking_available_slots.ToString()
+        </td>
+        <td style="font-size:30px; border:solid">
+            @Model.slots.ToString()
+        </td>
+        <td style="font-size:30px; border:solid">
+            @Model.price_per_day.ToString()
+        </td>
+    </tr>
+
+</table>
+<footer style="padding-top:27%;"></footer>
